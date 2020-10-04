@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace SENG8040A1
 {
@@ -19,7 +16,7 @@ namespace SENG8040A1
             else if (firstD == secondD || firstD == thirdD || secondD == thirdD)
             {
                 Console.WriteLine($"This triangle is an isosceles.\n");
-            } 
+            }
             else
             {
                 Console.WriteLine($"This triangle is a scalene.\n");
