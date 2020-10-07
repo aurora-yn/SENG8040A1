@@ -76,8 +76,7 @@ namespace SENG8040A1
             }
             else
             {
-                Console.WriteLine($"RESULT: {result}\n" +
-                    "*The sum of first and second side must be greater than third side.\n");
+                Console.WriteLine($"RESULT: {result}\n");
             }
             
         }

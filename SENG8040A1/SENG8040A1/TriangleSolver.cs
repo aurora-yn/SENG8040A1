@@ -8,26 +8,34 @@
         {
             string result = "";
 
-            if (firstSide + secondSide > thirdSide)
+            if (firstSide > 0 && secondSide > 0 && thirdSide > 0)
             {
-                if (firstSide == secondSide && firstSide == thirdSide)
+                if (firstSide + secondSide > thirdSide && firstSide + thirdSide > secondSide && secondSide + thirdSide > firstSide)
                 {
-                    triangle = "an equilateral";
-                }
-                else if (firstSide == secondSide || firstSide == thirdSide || secondSide == thirdSide)
-                {
-                    triangle = "an isosceles";
+                    if (firstSide == secondSide && firstSide == thirdSide)
+                    {
+                        triangle = "an equilateral";
+                    }
+                    else if (firstSide == secondSide || firstSide == thirdSide || secondSide == thirdSide)
+                    {
+                        triangle = "an isosceles";
+                    }
+                    else
+                    {
+                        triangle = "a scalene";
+                    }
+                    result = $"The valid triangle as {triangle}";
                 }
                 else
                 {
-                    triangle = "a scalene";
+                    result = "The invalid triangle";
                 }
-                result = $"The valid triangle as {triangle}";
             }
             else
             {
                 result = "The invalid triangle";
             }
+
             return result;
         }
     }
