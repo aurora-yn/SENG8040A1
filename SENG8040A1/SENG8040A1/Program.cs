@@ -6,59 +6,80 @@ namespace SENG8040A1
     {
         static void Main(string[] args)
         {
-            RunProg();
+            RunApp();
         }
-        public static void RunProg()
+        public static void RunApp()
         {
             Console.WriteLine("Select a menu using number. \n" +
                 "1. Enter triangle dimensions \n" +
                 "2. Exit");
 
-            int selectedMenu = GetInput();
+            int selectedMenu = GetMenu();
             while (selectedMenu != 1 && selectedMenu != 2)
             {
                 Console.WriteLine("Enter only exsiting menu numbers.");
-                selectedMenu = GetInput();
+                Console.WriteLine("---------------------------------------\n" +
+                    "Select a menu using number. \n" +
+                    "1. Enter triangle dimensions \n" +
+                    "2. Exit");
+                selectedMenu = GetMenu();
             }
 
             if (selectedMenu == 1)
             {
-                Console.WriteLine("selected 1. Enter triangle dimensions");
+                Console.WriteLine("---------------------------------------\n" +
+                    "selected 1");
                 GetTriangle();
-                Restart();
+                RunApp();
             }
             else if (selectedMenu == 2)
             {
-                Console.WriteLine("selected 2. Exit");
+                Console.WriteLine("---------------------------------------\n" +
+                    "selected 2");
                 Environment.Exit(0);
             }
         }
-        public static void Restart()
+        public static int GetMenu()
         {
-            Console.WriteLine("Would you like to restart the program? If so, enter 'y'.");
-            string restartInput = Console.ReadLine().ToLower();
-            if (restartInput == "y")
+            int number;
+            string input = Console.ReadLine();
+            while (int.TryParse(input, out int x) == false)
             {
-                RunProg();
+                Console.WriteLine("It is Invalid type. Enter only number.");
+                Console.WriteLine("---------------------------------------\n" +
+                    "Select a menu using number. \n" +
+                    "1. Enter triangle dimensions \n" +
+                    "2. Exit");
+                input = Console.ReadLine();
             }
-            else
-            {
-                Environment.Exit(0);
-            }
+            number = Int32.Parse(input);
+            return number;
         }
         public static void GetTriangle()
         {
-            Console.WriteLine("Enter first dimension.");
-            int firstD = GetInput();
+            Console.WriteLine("Enter first side.");
+            int firstSide = GetInput();
 
-            Console.WriteLine("Enter second dimension.");
-            int secondD = GetInput();
+            Console.WriteLine("Enter second side.");
+            int secondSide = GetInput();
 
-            Console.WriteLine("Enter thrid dimension.");
-            int thridD = GetInput();
+            Console.WriteLine("Enter thrid side.");
+            int thirdSide = GetInput();
 
-            TriangleSolver triangleSolver = new TriangleSolver();
-            triangleSolver.Analyze(firstD, secondD, thridD);
+            string result = TriangleSolver.Analyze(firstSide, secondSide, thirdSide);
+
+            Console.WriteLine($"\nEntered triangle dimensions are {firstSide}, {secondSide}, and {thirdSide}.");
+
+            if (result.Contains("The valid triangle"))
+            {
+                Console.WriteLine($"RESULT: {result}\n");
+            }
+            else
+            {
+                Console.WriteLine($"RESULT: {result}\n" +
+                    "*The sum of first and second side must be greater than third side.\n");
+            }
+            
         }
         public static int GetInput()
         {

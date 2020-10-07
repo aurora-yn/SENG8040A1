@@ -1,26 +1,34 @@
-﻿using System;
-
-namespace SENG8040A1
+﻿namespace SENG8040A1
 {
-    public class TriangleSolver
+    public static class TriangleSolver
     {
-        public void Analyze(int firstD, int secondD, int thirdD)
-        {
-            Console.WriteLine($"\nTriangle dimensions entered are {firstD}, {secondD}, and {thirdD}.");
-            //int[] dimensions = { firstD, secondD, thirdD };
+        private static string triangle;
 
-            if (firstD == secondD && firstD == thirdD)
+        public static string Analyze(int firstSide, int secondSide, int thirdSide)
+        {
+            string result = "";
+
+            if (firstSide + secondSide > thirdSide)
             {
-                Console.WriteLine($"This triangle is an equilateral.\n");
-            }
-            else if (firstD == secondD || firstD == thirdD || secondD == thirdD)
-            {
-                Console.WriteLine($"This triangle is an isosceles.\n");
+                if (firstSide == secondSide && firstSide == thirdSide)
+                {
+                    triangle = "an equilateral";
+                }
+                else if (firstSide == secondSide || firstSide == thirdSide || secondSide == thirdSide)
+                {
+                    triangle = "an isosceles";
+                }
+                else
+                {
+                    triangle = "a scalene";
+                }
+                result = $"The valid triangle as {triangle}";
             }
             else
             {
-                Console.WriteLine($"This triangle is a scalene.\n");
+                result = "The invalid triangle";
             }
+            return result;
         }
     }
 }
